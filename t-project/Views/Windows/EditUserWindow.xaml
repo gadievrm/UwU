@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:t_project.Views.Windows"
         mc:Ignorable="d" 
-        Height="500" Width="420" 
+        Height="524" Width="400" 
         WindowStartupLocation="CenterScreen" 
         Background="White">
     <Grid Margin="20">
@@ -15,13 +15,17 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Text="{Binding WindowTitle}" 
+        <TextBlock 
                    FontSize="18" FontWeight="Bold" 
-                   Foreground="#0060AC" HorizontalAlignment="Center"/>
+                   Foreground="#0060AC" HorizontalAlignment="Center"><Run Text="Редактирование "/><Run Language="ru-ru" Text="пользователя"/><LineBreak/><Run Language="ru-ru"/></TextBlock>
 
         <Border Grid.Row="1" Padding="15" BorderBrush="#DDD" BorderThickness="1" CornerRadius="10" Margin="0,10">
             <Grid>
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
@@ -37,40 +41,34 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <!-- Логин -->
-                <TextBlock Text="Логин*:" Grid.Row="0" VerticalAlignment="Center"/>
+                <TextBlock Text="Логин:" Grid.Row="0" VerticalAlignment="Center"/>
                 <TextBox x:Name="LoginTextBox" Grid.Row="0" Grid.Column="1" Margin="0,5"/>
 
-                <!-- Пароль -->
-                <TextBlock Text="Пароль*:" Grid.Row="1" VerticalAlignment="Center"/>
-                <PasswordBox x:Name="PasswordBox" Grid.Row="1" Grid.Column="1" Margin="0,5"/>
+                <TextBlock Text="Пароль:" Grid.Row="1" VerticalAlignment="Center"/>
+                <TextBox x:Name="PasswordTextBox" Grid.Row="1" Grid.Column="1" Margin="0,5"/>
 
-                <!-- Роль -->
                 <TextBlock Text="Роль:" Grid.Row="2" VerticalAlignment="Center"/>
-                <ComboBox x:Name="RoleComboBox" Grid.Row="2" Grid.Column="1" Margin="0,5"
-                          DisplayMemberPath="Value" SelectedValuePath="Key"/>
+                <ComboBox x:Name="RoleComboBox" Grid.Row="2" Grid.Column="1" Margin="0,5">
+                    <ComboBoxItem Content="Администратор"/>
+                    <ComboBoxItem Content="Пользователь"/>
+                    <ComboBoxItem Content="Сотрудник"/>
+                </ComboBox>
 
-                <!-- Фамилия -->
-                <TextBlock Text="Фамилия*:" Grid.Row="3" VerticalAlignment="Center"/>
-                <TextBox x:Name="LastNameTextBox" Grid.Row="3" Grid.Column="1" Margin="0,5"/>
+                <TextBlock Text="Почта:" Grid.Row="3" VerticalAlignment="Center"/>
+                <TextBox x:Name="EMailTextBox" Grid.Row="3" Grid.Column="1" Margin="0,5"/>
 
-                <!-- Имя -->
-                <TextBlock Text="Имя:" Grid.Row="4" VerticalAlignment="Center"/>
-                <TextBox x:Name="FirstNameTextBox" Grid.Row="4" Grid.Column="1" Margin="0,5"/>
+                <TextBlock Text="Фамилия:" Grid.Row="4" VerticalAlignment="Center"/>
+                <TextBox x:Name="SurNameTextBox" Grid.Row="4" Grid.Column="1" Margin="0,5"/>
 
-                <!-- Отчество -->
-                <TextBlock Text="Отчество:" Grid.Row="5" VerticalAlignment="Center"/>
-                <TextBox x:Name="MiddleNameTextBox" Grid.Row="5" Grid.Column="1" Margin="0,5"/>
+                <TextBlock Text="Имя:" Grid.Row="5" VerticalAlignment="Center"/>
+                <TextBox x:Name="NameTextBox" Grid.Row="5" Grid.Column="1" Margin="0,5"/>
 
-                <!-- Email -->
-                <TextBlock Text="Email:" Grid.Row="6" VerticalAlignment="Center"/>
-                <TextBox x:Name="EmailTextBox" Grid.Row="6" Grid.Column="1" Margin="0,5"/>
+                <TextBlock Text="Отчество:" Grid.Row="6" VerticalAlignment="Center"/>
+                <TextBox x:Name="LastNameTextBox" Grid.Row="6" Grid.Column="1" Margin="0,5"/>
 
-                <!-- Телефон -->
                 <TextBlock Text="Телефон:" Grid.Row="7" VerticalAlignment="Center"/>
                 <TextBox x:Name="PhoneTextBox" Grid.Row="7" Grid.Column="1" Margin="0,5"/>
 
-                <!-- Адрес -->
                 <TextBlock Text="Адрес:" Grid.Row="8" VerticalAlignment="Center"/>
                 <TextBox x:Name="AddressTextBox" Grid.Row="8" Grid.Column="1" Margin="0,5"/>
             </Grid>

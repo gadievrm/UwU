@@ -1,0 +1,95 @@
+﻿<Page x:Class="t_project.Views.MaterialsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d"
+      d:DesignHeight="550" d:DesignWidth="650"
+      Title="MaterialsPage">
+
+    <Border CornerRadius="10" Padding="10" Background="White">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="Расходные материалы"
+                       FontSize="18"
+                       FontWeight="Bold"
+                       Foreground="#0060AC"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"/>
+
+            <StackPanel Grid.Row="1" Orientation="Horizontal"
+                        HorizontalAlignment="Center"
+                        Margin="0,10,0,10">
+                <Button Content="Добавить"
+                        Width="120"
+                        Height="40"
+                        FontSize="14"
+                        FontWeight="Bold"
+                        Background="#0060AC"
+                        Foreground="White"
+                        BorderThickness="0"
+                        Click="AddNewRowButton_Click"
+                        Cursor="Hand"/>
+
+                <Grid Margin="10,0,0,0">
+                    <TextBox x:Name="SearchTextBox"
+                             Width="200"
+                             Height="40"
+                             FontSize="14"
+                             FontWeight="Bold"
+                             VerticalAlignment="Center"
+                             TextChanged="SearchTextBox_TextChanged"
+                             GotFocus="SearchTextBox_GotFocus"
+                             LostFocus="SearchTextBox_LostFocus"/>
+                    <TextBlock x:Name="SearchPlaceholder"
+                               Text="Поиск..."
+                               Foreground="Gray"
+                               Margin="15,0,0,0"
+                               IsHitTestVisible="False"
+                               FontSize="14"/>
+                </Grid>
+            </StackPanel>
+
+            <DataGrid x:Name="MaterialsGrid"
+                      Grid.Row="2"
+                      AutoGenerateColumns="False"
+                      ItemsSource="{Binding MaterialItems}"
+                      Margin="10"
+                      Background="White"
+                      RowBackground="White"
+                      AlternatingRowBackground="#F7F7F7"
+                      GridLinesVisibility="None">
+
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn Header="Изображение" Width="80">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Image Source="{Binding Image}" Width="60" Height="60" Stretch="Uniform"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTextColumn Header="Наименование" Binding="{Binding Name}" Width="200"/>
+                    <DataGridTextColumn Header="Количество" Binding="{Binding Quantity}" Width="100"/>
+                    <DataGridTextColumn Header="Тип" Binding="{Binding MaterialType}" Width="120"/>
+                    <DataGridTextColumn Header="Ответственный" Binding="{Binding ResponsibleUser}" Width="150"/>
+                    <DataGridTextColumn Header="Дата поступления" 
+                                      Binding="{Binding ComeDate, StringFormat=dd.MM.yyyy}" 
+                                      Width="120"/>
+                </DataGrid.Columns>
+
+                <DataGrid.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Редактировать" Click="EditItem_Click"/>
+                        <MenuItem Header="Удалить" Click="DeleteItem_Click"/>
+                    </ContextMenu>
+                </DataGrid.ContextMenu>
+            </DataGrid>
+        </Grid>
+    </Border>
+</Page>

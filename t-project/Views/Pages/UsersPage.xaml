@@ -3,7 +3,6 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:t_project.Views.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="550" d:DesignWidth="650"
       Title="UsersPage">
@@ -64,7 +63,7 @@
             <DataGrid x:Name="UsersGrid"
                       Grid.Row="2"
                       AutoGenerateColumns="False"
-                      IsReadOnly="True"
+                      CanUserAddRows="False"
                       CanUserSortColumns="True"
                       VerticalAlignment="Stretch"
                       Background="White"
@@ -75,9 +74,6 @@
                       BorderBrush="#DDD"
                       BorderThickness="0.5"
                       SelectionMode="Single"
-                      CanUserAddRows="False"
-                      MinHeight="300"
-                      Margin="10"
                       ItemsSource="{Binding UsersItems}">
 
                 <DataGrid.ContextMenu>
@@ -115,17 +111,16 @@
                 </DataGrid.Resources>
 
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Логин" Binding="{Binding Login}" Width="1.5*"/>
-                    <DataGridTextColumn Header="Фамилия" Binding="{Binding L_name}" Width="2*"/>
+                    <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="1*" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Логин" Binding="{Binding Login}" Width="2*"/>
+                    <DataGridTextColumn Header="Пароль" Binding="{Binding Password}" Width="2*"/>
+                    <DataGridTextColumn Header="Роль" Binding="{Binding Role}" Width="2*"/>
+                    <DataGridTextColumn Header="Почта" Binding="{Binding Email}" Width="2*"/>
+                    <DataGridTextColumn Header="Фамилия" Binding="{Binding Surname}" Width="2*"/>
                     <DataGridTextColumn Header="Имя" Binding="{Binding Name}" Width="2*"/>
-                    <DataGridTextColumn Header="Роль" Binding="{Binding Role}" Width="1*">
-                        <DataGridTextColumn.ElementStyle>
-                            <Style TargetType="TextBlock">
-                                <Setter Property="Text" Value="{Binding Role, Converter={StaticResource RoleConverter}}"/>
-                            </Style>
-                        </DataGridTextColumn.ElementStyle>
-                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="Отчество" Binding="{Binding LastName}" Width="2*"/>
                     <DataGridTextColumn Header="Телефон" Binding="{Binding Phone}" Width="2*"/>
+                    <DataGridTextColumn Header="Адрес" Binding="{Binding Address}" Width="2*"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>

@@ -4,20 +4,19 @@ using t_project.Models;
 
 namespace t_project.DB.Context
 {
-    public class UserContext : DbContext
+    public class UsersContext : DbContext
     {
         public DbSet<User> Users { get; set; }
+
+        public UsersContext()
+        {
+            Database.EnsureCreated();
+            Users.Load();
+        }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseMySql(Config.connection, Config.version);
-        }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<User>()
-                .HasIndex(u => u.Login)
-                .IsUnique();
         }
     }
 }

@@ -79,6 +79,23 @@ namespace t_project.Views
         {
             equipment.Navigate(new InventoryPage());
         }
+
+        private void Users_Click(object sender, RoutedEventArgs e)
+        {
+            equipment.Navigate(new UsersPage());
+        }
+
+        private void NetSettings_Click(object sender, RoutedEventArgs e)
+        {
+            equipment.Navigate(new NetSettingsPage());
+        }
+
+        private void Materials_Click(object sender, RoutedEventArgs e)
+        {
+            equipment.Navigate(new MaterialsPage());
+        }
+
+
         #endregion
     }
 }

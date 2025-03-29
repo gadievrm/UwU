@@ -1,0 +1,95 @@
+﻿<Window x:Class="t_project.Views.Windows.EditMaterialWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Редактирование материала" 
+        Height="600" 
+        Width="450"
+        WindowStartupLocation="CenterScreen"
+        Background="White">
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Редактирование материала"
+                   FontSize="18"
+                   FontWeight="Bold"
+                   Foreground="#0060AC"
+                   HorizontalAlignment="Center"/>
+
+        <Border Grid.Row="1" Padding="15" BorderBrush="#DDD" BorderThickness="1" CornerRadius="10" Margin="0,20">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="140"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Изображение -->
+                <TextBlock Text="Изображение:" Grid.Row="0" Grid.Column="0"/>
+                <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
+                    <Border BorderBrush="#CCC" BorderThickness="1" CornerRadius="5" Width="80" Height="80">
+                        <Image x:Name="MaterialImage" Width="80" Height="80" Stretch="UniformToFill"/>
+                    </Border>
+                    <Button Content="Выбрать" Click="SelectImage_Click" Margin="10,0,0,0" Width="80"/>
+                </StackPanel>
+
+                <!-- Основные поля -->
+                <TextBlock Text="Наименование:" Grid.Row="1" Grid.Column="0" Margin="0,10"/>
+                <TextBox x:Name="NameTextBox" Grid.Row="1" Grid.Column="1" Margin="0,10"/>
+
+                <TextBlock Text="Описание:" Grid.Row="2" Grid.Column="0" Margin="0,10"/>
+                <TextBox x:Name="DescriptionTextBox" Grid.Row="2" Grid.Column="1" Margin="0,10"/>
+
+                <TextBlock Text="Дата поступления:" Grid.Row="3" Grid.Column="0" Margin="0,10"/>
+                <DatePicker x:Name="ComeDatePicker" Grid.Row="3" Grid.Column="1" Margin="0,10"/>
+
+                <TextBlock Text="Количество:" Grid.Row="4" Grid.Column="0" Margin="0,10"/>
+                <TextBox x:Name="QuantityTextBox" Grid.Row="4" Grid.Column="1" Margin="0,10" 
+                         PreviewTextInput="NumberValidation_PreviewTextInput"/>
+
+                <TextBlock Text="Ответственный:" Grid.Row="5" Grid.Column="0" Margin="0,10"/>
+                <TextBox x:Name="ResponsibleTextBox" Grid.Row="5" Grid.Column="1" Margin="0,10"/>
+
+                <TextBlock Text="Временный ответственный:" Grid.Row="6" Grid.Column="0" Margin="0,10"/>
+                <TextBox x:Name="TemporaryUserTextBox" Grid.Row="6" Grid.Column="1" Margin="0,10"/>
+
+                <TextBlock Text="Тип материала:" Grid.Row="7" Grid.Column="0" Margin="0,10"/>
+                <ComboBox x:Name="TypeComboBox" Grid.Row="7" Grid.Column="1" Margin="0,10"
+                          ItemsSource="{Binding MaterialTypes}"/>
+
+                <TextBlock Text="Прикреплено к оборудованию:" Grid.Row="8" Grid.Column="0" Margin="0,10"/>
+                <ComboBox x:Name="EquipmentComboBox" Grid.Row="8" Grid.Column="1" Margin="0,10"
+                          DisplayMemberPath="Name"/>
+            </Grid>
+        </Border>
+
+        <!-- Кнопки -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
+            <Button Content="Сохранить" Click="SaveButton_Click" 
+                    Width="120" Height="40"
+                    Background="#0060AC" Foreground="White"
+                    FontWeight="Bold" BorderThickness="0"/>
+
+            <Button Content="Отмена" Click="CancelButton_Click" 
+                    Width="120" Height="40"
+                    Background="LightGray" Foreground="Black"
+                    FontWeight="Bold" BorderThickness="0"
+                    Margin="10,0,0,0"/>
+        </StackPanel>
+    </Grid>
+</Window>

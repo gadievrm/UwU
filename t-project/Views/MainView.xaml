@@ -615,7 +615,192 @@
                         </Button.Style>
                     </Button>
 
+                    <Button Content="Пользователи"
+Click="Users_Click"
+FontSize="12"
+FontFamily="Montserrat"
+Foreground="White"
+Cursor="Hand"
+Padding="10,5"
+Width="130"
+Height="30"
+BorderThickness="0"
+Margin="0,5,0,0">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background">
+                                    <Setter.Value>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                            <GradientStop Color="#0060AC" Offset="0"/>
+                                            <GradientStop Color="#004080" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="BorderThickness" Value="0"/>
+                                <Setter Property="FontWeight" Value="Bold"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border Width="{TemplateBinding Width}"
+                        Height="{TemplateBinding Height}"
+                        CornerRadius="8"
+                        Background="{TemplateBinding Background}">
+                                                <ContentPresenter VerticalAlignment="Center"
+                                      HorizontalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background">
+                                            <Setter.Value>
+                                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                                    <GradientStop Color="#0078D7" Offset="0"/>
+                                                    <GradientStop Color="#0054A0" Offset="1"/>
+                                                </LinearGradientBrush>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Trigger>
+                                    <Trigger Property="IsPressed" Value="True">
+                                        <Setter Property="Background">
+                                            <Setter.Value>
+                                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                                    <GradientStop Color="#004080" Offset="0"/>
+                                                    <GradientStop Color="#002850" Offset="1"/>
+                                                </LinearGradientBrush>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
 
+                    <Button Content="Сетевые настройки"
+Click="NetSettings_Click"
+FontSize="12"
+FontFamily="Montserrat"
+Foreground="White"
+Cursor="Hand"
+Padding="10,5"
+Width="130"
+Height="30"
+BorderThickness="0"
+Margin="0,5,0,0">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background">
+                                    <Setter.Value>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                            <GradientStop Color="#0060AC" Offset="0"/>
+                                            <GradientStop Color="#004080" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="BorderThickness" Value="0"/>
+                                <Setter Property="FontWeight" Value="Bold"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border Width="{TemplateBinding Width}"
+                        Height="{TemplateBinding Height}"
+                        CornerRadius="8"
+                        Background="{TemplateBinding Background}">
+                                                <ContentPresenter VerticalAlignment="Center"
+                                      HorizontalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background">
+                                            <Setter.Value>
+                                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                                    <GradientStop Color="#0078D7" Offset="0"/>
+                                                    <GradientStop Color="#0054A0" Offset="1"/>
+                                                </LinearGradientBrush>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Trigger>
+                                    <Trigger Property="IsPressed" Value="True">
+                                        <Setter Property="Background">
+                                            <Setter.Value>
+                                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                                    <GradientStop Color="#004080" Offset="0"/>
+                                                    <GradientStop Color="#002850" Offset="1"/>
+                                                </LinearGradientBrush>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+
+
+                    <Button Content="Материалы"
+Click="Materials_Click"
+FontSize="12"
+FontFamily="Montserrat"
+Foreground="White"
+Cursor="Hand"
+Padding="10,5"
+Width="130"
+Height="30"
+BorderThickness="0"
+Margin="0,5,0,0">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background">
+                                    <Setter.Value>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                            <GradientStop Color="#0060AC" Offset="0"/>
+                                            <GradientStop Color="#004080" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="BorderThickness" Value="0"/>
+                                <Setter Property="FontWeight" Value="Bold"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border Width="{TemplateBinding Width}"
+                        Height="{TemplateBinding Height}"
+                        CornerRadius="8"
+                        Background="{TemplateBinding Background}">
+                                                <ContentPresenter VerticalAlignment="Center"
+                                      HorizontalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background">
+                                            <Setter.Value>
+                                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                                    <GradientStop Color="#0078D7" Offset="0"/>
+                                                    <GradientStop Color="#0054A0" Offset="1"/>
+                                                </LinearGradientBrush>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Trigger>
+                                    <Trigger Property="IsPressed" Value="True">
+                                        <Setter Property="Background">
+                                            <Setter.Value>
+                                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                                    <GradientStop Color="#004080" Offset="0"/>
+                                                    <GradientStop Color="#002850" Offset="1"/>
+                                                </LinearGradientBrush>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
 
 
 
