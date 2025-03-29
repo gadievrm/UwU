@@ -1,48 +1,42 @@
 ﻿using System.Windows;
-using System.Collections.Generic;
 using t_project.Models;
 
 namespace t_project.Views.Windows
 {
     public partial class EditModelTypeWindow : Window
     {
-        public ModelType Model { get; private set; }
-        private readonly List<EquipmentType> _equipmentTypes;
+        public ModelType ModelType { get; private set; }
 
-        public EditModelTypeWindow(ModelType model, List<EquipmentType> equipmentTypes)
+        public EditModelTypeWindow(ModelType modelType)
         {
             InitializeComponent();
-            Model = model;
-            _equipmentTypes = equipmentTypes;
-            DataContext = this;
+            ModelType = modelType;
 
-            // Инициализация ComboBox
-            TypeComboBox.ItemsSource = _equipmentTypes;
-            TypeComboBox.DisplayMemberPath = "NameType";
-            TypeComboBox.SelectedValuePath = "Id";
-            TypeComboBox.SelectedValue = model.TypeId;
+            IdTextBlock.Text = modelType.Id.ToString();
+            NameTextBox.Text = modelType.NameModel;
+            TypeIdTextBox.Text = modelType.IdType.ToString();
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(Model.Name))
+            if (string.IsNullOrWhiteSpace(NameTextBox.Text))
             {
-                MessageBox.Show("Наименование модели обязательно!", "Ошибка",
+                MessageBox.Show("Наименование модели не может быть пустым!", "Ошибка",
                     MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
-            if (TypeComboBox.SelectedValue is int typeId)
-            {
-                Model.TypeId = typeId;
-            }
+            ModelType.NameModel = NameTextBox.Text;
+            ModelType.IdType = int.Parse(TypeIdTextBox.Text);
 
             DialogResult = true;
+            Close();
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
             DialogResult = false;
+            Close();
         }
     }
-}   
+}

@@ -81,14 +81,14 @@
                   MinHeight="300"
                   Margin="10"
                   ItemsSource="{Binding AuditoriumsItems}">
-
+                
                 <DataGrid.ContextMenu>
                     <ContextMenu>
                         <MenuItem Header="Редактировать" Click="EditItem_Click"/>
                         <MenuItem Header="Удалить" Click="DeleteItem_Click"/>
                     </ContextMenu>
                 </DataGrid.ContextMenu>
-
+                
                 <DataGrid.Resources>
                     <!-- Стиль заголовков -->
                     <Style TargetType="DataGridColumnHeader">
@@ -118,7 +118,7 @@
                         <Setter Property="Foreground" Value="Black"/>
                     </Style>
                 </DataGrid.Resources>
-
+                
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Наименование" Binding="{Binding Name}" Width="2*"/>
                     <DataGridTextColumn Header="Сокращение" Binding="{Binding ShortName}" Width="*"/>

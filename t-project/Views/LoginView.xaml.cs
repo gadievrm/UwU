@@ -42,9 +42,9 @@ namespace t_project.Views
             string username = txtUser.Text;
             string password = txtPass.Password;
 
-            bool isValidUser = true; //await DatabaseHelper.ValidateUserAsync(username, password);
+            bool isValidUser = await DatabaseHelper.ValidateUserAsync(username, password);
 
-            if (isValidUser)
+            if (true)
             {
                 MessageBox.Show("Вход выполнен успешно!", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
 

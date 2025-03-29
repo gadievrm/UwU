@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace t_project.Models
 {
@@ -16,12 +15,7 @@ namespace t_project.Models
         public decimal Price { get; set; }
         public string Direction { get; set; }
         public string Status { get; set; }
-
-        [ForeignKey("ModelType")]
-        public int? ModelTypeId { get; set; }  // Делаем nullable для обратной совместимости
-        public ModelType ModelType { get; set; }
-
-        public string Model { get; set; }  // Оставляем старое поле для совместимости
+        public string Model { get; set; }
         public string Comment { get; set; }
     }
 }

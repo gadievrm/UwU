@@ -1,10 +1,12 @@
-﻿namespace t_project.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace t_project.Models
 {
+    [Table("ModelType")]
     public class ModelType
     {
         public int Id { get; set; }
-        public string Name { get; set; }  // Наименование модели (обязательное)
-        public int TypeId { get; set; }   // Код типа оборудования
-        public EquipmentType Type { get; set; } // Навигационное свойство
+        public string NameModel { get; set; }
+        public int IdType { get; set; }
     }
 }

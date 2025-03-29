@@ -4,11 +4,11 @@ using t_project.Models;
 
 namespace t_project.DB.Context
 {
-    public class ModelTypeContext : DbContext
+    public class ProgrammerContext : DbContext
     {
-        public DbSet<ModelType> ModelTypes { get; set; }
+        public DbSet<Programmer> Programmers { get; set; }
 
-        public ModelTypeContext()
+        public ProgrammerContext()
         {
             Database.EnsureCreated();
         }
@@ -18,4 +18,4 @@ namespace t_project.DB.Context
             optionsBuilder.UseMySql(Config.connection, Config.version);
         }
     }
-}   
+}

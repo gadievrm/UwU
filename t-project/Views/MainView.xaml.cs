@@ -1,19 +1,18 @@
 ﻿using System.Windows;
 using System.Windows.Input;
+using t_project.Models;
 using t_project.Views.Pages;
 
 namespace t_project.Views
 {
-    /// <summary>
-    /// Логика взаимодействия для MainView.xaml
-    /// </summary>
     public partial class MainView : Window
     {
         public MainView()
         {
             InitializeComponent();
         }
-        #region Оформление.
+
+        #region Оформление окна
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
@@ -34,10 +33,12 @@ namespace t_project.Views
         {
             if (WindowState == WindowState.Maximized)
                 WindowState = WindowState.Normal;
-            else WindowState = WindowState.Maximized;
+            else
+                WindowState = WindowState.Maximized;
         }
         #endregion
 
+        #region Навигация
         private void Equipment_Click(object sender, RoutedEventArgs e)
         {
             equipment.Content = new EquipmentPage();
@@ -57,5 +58,22 @@ namespace t_project.Views
         {
             equipment.Navigate(new TypePage());
         }
+
+        private void EquipmentModels_Click(object sender, RoutedEventArgs e)
+        {
+            equipment.Navigate(new ModelTypePage());
+        }
+
+        // НОВЫЙ ОБРАБОТЧИК ДЛЯ КНОПКИ "ПРОГРАММЫ"
+        private void Programms_Click(object sender, RoutedEventArgs e)
+        {
+            equipment.Navigate(new ProgrammsPage());
+        }
+
+        private void Programmers_Click(object sender, RoutedEventArgs e)
+        {
+            equipment.Navigate(new ProgrammersPage());
+        }
+        #endregion
     }
 }

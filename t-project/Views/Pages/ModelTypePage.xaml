@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:t_project.Views.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="550" d:DesignWidth="650"
-      Title="Виды моделей оборудования">
+      Title="ModelTypePage">
 
     <Border CornerRadius="10" Padding="10" Background="White">
         <Grid>
@@ -16,55 +16,52 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <!-- Заголовок -->
-            <TextBlock Text="Список видов моделей оборудования"
-                       VerticalAlignment="Center"
-                       HorizontalAlignment="Center"
-                       FontSize="18"
-                       FontWeight="Bold"
-                       Foreground="#0060AC"/>
+            <TextBlock Text="Список видов моделей"
+               VerticalAlignment="Center"
+               HorizontalAlignment="Center"
+               FontSize="18"
+               FontWeight="Bold"
+               Foreground="#0060AC"/>
 
             <StackPanel Grid.Row="1" Orientation="Horizontal"
-                        HorizontalAlignment="Center"
-                        Margin="0,10,0,10">
+                    HorizontalAlignment="Center"
+                    Margin="0,10,0,10">
                 <Button Content="Добавить"
-                        Width="120"
-                        Height="40"
-                        FontSize="14"
-                        FontWeight="Bold"
-                        Background="#0060AC"
-                        Foreground="White"
-                        BorderThickness="0"
-                        Click="AddNewRowButton_Click"
-                        Cursor="Hand"/>
+                    Width="120"
+                    Height="40"
+                    FontSize="14"
+                    FontWeight="Bold"
+                    Background="#0060AC"
+                    Foreground="White"
+                    BorderThickness="0"
+                    Click="AddNewRowButton_Click"
+                    Cursor="Hand"/>
 
-                <!-- Поле для поиска -->
                 <Grid>
                     <TextBox x:Name="SearchTextBox"
-                             Width="200"
-                             Height="40"
-                             Margin="10,0,0,0"
-                             FontSize="14"
-                             FontWeight="Bold"
-                             VerticalAlignment="Center"
-                             HorizontalAlignment="Center"
-                             VerticalContentAlignment="Center"
-                             TextChanged="SearchTextBox_TextChanged"
-                             GotFocus="SearchTextBox_GotFocus"
-                             LostFocus="SearchTextBox_LostFocus"/>
+                         Width="200"
+                         Height="40"
+                         Margin="10,0,0,0"
+                         FontSize="14"
+                         FontWeight="Bold"
+                         VerticalAlignment="Center"
+                         HorizontalAlignment="Center"
+                         VerticalContentAlignment="Center"
+                         TextChanged="SearchTextBox_TextChanged"
+                         GotFocus="SearchTextBox_GotFocus"
+                         LostFocus="SearchTextBox_LostFocus"/>
                     <TextBlock x:Name="SearchPlaceholder"
-                               Text="Поиск..."
-                               VerticalAlignment="Center"
-                               HorizontalAlignment="Left"
-                               Foreground="Gray"
-                               Margin="15,0,0,0"
-                               IsHitTestVisible="False"
-                               FontSize="14"/>
+                           Text="Поиск..."
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Left"
+                           Foreground="Gray"
+                           Margin="15,0,0,0"
+                           IsHitTestVisible="False"
+                           FontSize="14"/>
                 </Grid>
             </StackPanel>
 
-            <!-- Таблица -->
-            <DataGrid x:Name="ModelsGrid"
+            <DataGrid x:Name="ModelTypesGrid"
                       Grid.Row="2"
                       AutoGenerateColumns="False"
                       IsReadOnly="True"
@@ -81,7 +78,7 @@
                       CanUserAddRows="False"
                       MinHeight="300"
                       Margin="10"
-                      ItemsSource="{Binding ModelsItems}">
+                      ItemsSource="{Binding ModelTypesItems}">
 
                 <DataGrid.ContextMenu>
                     <ContextMenu>
@@ -91,7 +88,6 @@
                 </DataGrid.ContextMenu>
 
                 <DataGrid.Resources>
-                    <!-- Стиль заголовков -->
                     <Style TargetType="DataGridColumnHeader">
                         <Setter Property="Background" Value="#0060AC"/>
                         <Setter Property="Foreground" Value="White"/>
@@ -102,14 +98,12 @@
                         <Setter Property="BorderThickness" Value="1"/>
                     </Style>
 
-                    <!-- Стиль строк -->
                     <Style TargetType="DataGridRow">
                         <Setter Property="FontSize" Value="13"/>
                         <Setter Property="Height" Value="50"/>
                         <Setter Property="VerticalAlignment" Value="Center"/>
                     </Style>
 
-                    <!-- Стиль ячеек -->
                     <Style TargetType="DataGridCell">
                         <Setter Property="TextBlock.TextAlignment" Value="Center"/>
                         <Setter Property="TextBlock.VerticalAlignment" Value="Center"/>
@@ -121,9 +115,9 @@
                 </DataGrid.Resources>
 
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="*"/>
-                    <DataGridTextColumn Header="Наименование модели" Binding="{Binding Name}" Width="2*"/>
-                    <DataGridTextColumn Header="Тип оборудования" Binding="{Binding Type.NameType}" Width="2*"/>
+                    <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="40"/>
+                    <DataGridTextColumn Header="Наименование" Binding="{Binding NameModel}" Width="2*"/>
+                    <DataGridTextColumn Header="Тип оборудования" Binding="{Binding IdType}" Width="1*"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>

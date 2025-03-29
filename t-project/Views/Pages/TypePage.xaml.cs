@@ -160,7 +160,7 @@ namespace t_project.Views.Pages
                 {
                     try
                     {
-                        // Вариант 1: Загружаем сущность через контекст
+
                         var entity = await _db.Type.FindAsync(selectedType.Id);
                         if (entity != null)
                         {
@@ -168,7 +168,6 @@ namespace t_project.Views.Pages
                             await _db.SaveChangesAsync();
                             await LoadTypesAsync();
                         }
-
                     }
                     catch (Exception ex)
                     {

@@ -1,10 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Windows.Controls;
+using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Data;
 using t_project.DB.Context;
 using t_project.Models;
@@ -14,129 +13,124 @@ namespace t_project.Views.Pages
 {
     public partial class ModelTypePage : Page, INotifyPropertyChanged
     {
-        private readonly ModelTypeContext _context;
-        private ObservableCollection<ModelType> _models;
-        private ICollectionView _modelsView;
+        private ObservableCollection<ModelType> _modelTypeList;
+        private ICollectionView _modelTypeView;
+        private readonly ModelTypeContext _db;
 
-        public ObservableCollection<ModelType> ModelsItems
+        public ObservableCollection<ModelType> ModelTypesItems
         {
-            get => _models;
-            set
-            {
-                _models = value;
-                OnPropertyChanged();
-            }
+            get => _modelTypeList;
+            set { _modelTypeList = value; OnPropertyChanged(nameof(ModelTypesItems)); }
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged(string propertyName) =>
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
         public ModelTypePage()
         {
             InitializeComponent();
-            _context = new ModelTypeContext();
-            Loaded += (s, e) => LoadModels();
-            DataContext = this;
+            _db = new ModelTypeContext();
+            Loaded += ModelTypePage_Loaded;
         }
 
-        private void LoadModels()
+        private async void ModelTypePage_Loaded(object sender, RoutedEventArgs e)
         {
-            _context.ModelTypes
-                .Include(m => m.Type)
-                .Load();
-
-            ModelsItems = _context.ModelTypes.Local.ToObservableCollection();
-            _modelsView = CollectionViewSource.GetDefaultView(ModelsItems);
-            _modelsView.Filter = ModelFilter;
+            await LoadModelTypesAsync();
         }
 
-        private bool ModelFilter(object item)
+        private async Task LoadModelTypesAsync()
         {
-            if (string.IsNullOrWhiteSpace(SearchTextBox.Text))
+            var items = await _db.ModelTypes.ToListAsync();
+            ModelTypesItems = new ObservableCollection<ModelType>(items);
+            _modelTypeView = CollectionViewSource.GetDefaultView(ModelTypesItems);
+            _modelTypeView.Filter = ModelTypeFilter;
+            ModelTypesGrid.ItemsSource = _modelTypeView;
+        }
+
+        private bool ModelTypeFilter(object item)
+        {
+            if (string.IsNullOrEmpty(SearchTextBox.Text))
                 return true;
 
-            var model = item as ModelType;
-            var searchText = SearchTextBox.Text.ToLower();
+            if (item is ModelType modelType)
+            {
+                string searchQuery = SearchTextBox.Text.ToLower();
+                return (modelType.NameModel?.ToLower().Contains(searchQuery) == true ||
+                       modelType.Id.ToString().ToLower().Contains(searchQuery) == true ||
+                       modelType.IdType.ToString().ToLower().Contains(searchQuery) == true);
+            }
 
-            return model.Name.ToLower().Contains(searchText) ||
-                   model.Type?.NameType.ToLower().Contains(searchText) == true ||
-                   model.Id.ToString().Contains(searchText);
+            return false;
         }
 
         private void AddNewRowButton_Click(object sender, RoutedEventArgs e)
         {
-            var newModel = new ModelType { Name = "Новая модель" };
-            var editWindow = new EditModelTypeWindow(
-                model: newModel,
-                equipmentTypes: _context.EquipmentTypes.Local.ToList()
-            );
-
-            if (editWindow.ShowDialog() == true)
+            var newModelType = new ModelType
             {
-                _context.ModelTypes.Add(newModel);
-                _context.SaveChanges();
-                LoadModels();
-            }
+                NameModel = "Новая модель",
+                IdType = 1
+            };
+            _db.ModelTypes.Add(newModelType);
+            _db.SaveChanges();
+            ModelTypesItems.Add(newModelType);
         }
 
-        private void EditItem_Click(object sender, RoutedEventArgs e)
-        {
-            if (ModelsGrid.SelectedItem is ModelType selectedModel)
-            {
-                var editWindow = new EditModelTypeWindow(
-                    model: selectedModel,
-                    equipmentTypes: _context.EquipmentTypes.Local.ToList()
-                );
-
-                if (editWindow.ShowDialog() == true)
-                {
-                    _context.SaveChanges();
-                    LoadModels();
-                }
-            }
-        }
-
-        private void DeleteItem_Click(object sender, RoutedEventArgs e)
-        {
-            if (ModelsGrid.SelectedItem is ModelType selectedModel)
-            {
-                if (_context.Equipments.Any(e => e.ModelTypeId == selectedModel.Id))
-                {
-                    MessageBox.Show(
-                        "Невозможно удалить: модель используется в оборудовании",
-                        "Ошибка",
-                        MessageBoxButton.OK,
-                        MessageBoxImage.Warning
-                    );
-                    return;
-                }
-
-                _context.ModelTypes.Remove(selectedModel);
-                _context.SaveChanges();
-                LoadModels();
-            }
-        }
-
-        // Обработчики поиска (остаются без изменений)
         private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            _modelsView?.Refresh();
+        {   
+            _modelTypeView?.Refresh();
         }
 
         private void SearchTextBox_GotFocus(object sender, RoutedEventArgs e)
         {
-            SearchPlaceholder.Visibility = Visibility.Hidden;
+            if (string.IsNullOrEmpty(SearchTextBox.Text))
+            {
+                SearchPlaceholder.Visibility = Visibility.Hidden;
+            }
         }
 
         private void SearchTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(SearchTextBox.Text))
+            if (string.IsNullOrEmpty(SearchTextBox.Text))
             {
                 SearchPlaceholder.Visibility = Visibility.Visible;
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        private void EditItem_Click(object sender, RoutedEventArgs e)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            if (ModelTypesGrid.SelectedItem is ModelType selectedModelType)
+            {
+                var editWindow = new EditModelTypeWindow(selectedModelType);
+                if (editWindow.ShowDialog() == true)
+                {
+                    _db.SaveChanges();
+                    LoadModelTypesAsync();
+                }
+            }
+        }
+
+        private async void DeleteItem_Click(object sender, RoutedEventArgs e)
+        {
+            if (ModelTypesGrid.SelectedItem is ModelType selectedModelType)
+            {
+                try
+                {
+                    _db.ModelTypes.Remove(selectedModelType);
+                    await _db.SaveChangesAsync();
+                    await LoadModelTypesAsync();
+                }
+                catch (DbUpdateException)
+                {
+                    MessageBox.Show("Нельзя удалить вид модели, так как она связана с другим оборудованием",
+                        "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+            }
+        }
+
+        private void ModelTypesGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

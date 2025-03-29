@@ -5,7 +5,7 @@ using t_project.Models;
 namespace t_project.DB.Context
 {
     public class AuditoriumContext : DbContext
-    {
+    {   
         public DbSet<Auditorium> Auditorium { get; set; }
         public AuditoriumContext()
         {

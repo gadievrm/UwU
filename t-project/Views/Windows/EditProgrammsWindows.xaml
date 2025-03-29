@@ -1,12 +1,12 @@
-﻿<Window x:Class="t_project.Views.Windows.EditModelTypeWindow"
+﻿<Window x:Class="t_project.Views.Windows.EditProgrammsWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" 
-        Height="300" Width="400" 
+        Height="350" Width="400" 
         WindowStartupLocation="CenterScreen" 
-        Title="Редактирование вида модели"
+        Title="Редактирование программы"
         Background="White">
 
     <Grid Margin="20">
@@ -16,13 +16,14 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Text="Редактирование вида модели" 
+        <TextBlock Text="Редактирование программы" 
                   FontSize="18" FontWeight="Bold" Foreground="#0060AC"
                   HorizontalAlignment="Center" Margin="0,0,0,10"/>
 
         <Border Grid.Row="1" Padding="15" BorderBrush="#DDD" BorderThickness="1" CornerRadius="10">
             <Grid>
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
@@ -38,8 +39,11 @@
                 <TextBlock Text="Наименование:" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center"/>
                 <TextBox x:Name="NameTextBox" Grid.Row="1" Grid.Column="1" Margin="0,5"/>
 
-                <TextBlock Text="Тип оборудования:" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center"/>
-                <TextBox x:Name="TypeIdTextBox" Grid.Row="2" Grid.Column="1" Margin="0,5"/>
+                <TextBlock Text="Разработчик:" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center"/>
+                <TextBox x:Name="DeveloperTextBox" Grid.Row="2" Grid.Column="1" Margin="0,5"/>
+
+                <TextBlock Text="Версия:" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center"/>
+                <TextBox x:Name="VersionTextBox" Grid.Row="3" Grid.Column="1" Margin="0,5"/>
             </Grid>
         </Border>
 
