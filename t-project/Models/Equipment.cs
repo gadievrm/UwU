@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace t_project.Models
 {
@@ -17,5 +18,13 @@ namespace t_project.Models
         public string Status { get; set; }
         public string Model { get; set; }
         public string Comment { get; set; }
+
+        // Внешний ключ
+        [Column ("id")]
+        public int InventoryId { get; set; }
+
+        // Навигационное свойство
+        [ForeignKey("InventoryId")]
+        public Inventory Inventory { get; set; }
     }
 }

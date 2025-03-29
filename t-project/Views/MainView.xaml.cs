@@ -74,6 +74,11 @@ namespace t_project.Views
         {
             equipment.Navigate(new ProgrammersPage());
         }
+
+        private void Inventory_Click(object sender, RoutedEventArgs e)
+        {
+            equipment.Navigate(new InventoryPage());
+        }
         #endregion
     }
 }

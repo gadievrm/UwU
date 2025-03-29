@@ -1,11 +1,11 @@
-﻿<Page x:Class="t_project.Views.Pages.ProgrammersPage"
+﻿<Page x:Class="t_project.Views.Pages.InventoryPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
       d:DesignHeight="550" d:DesignWidth="650"
-      Title="ProgrammersPage">
+      Title="InventoryPage">
 
     <Border CornerRadius="10" Padding="10" Background="White">
         <Grid>
@@ -15,7 +15,7 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <TextBlock Text="Список программистов"
+            <TextBlock Text="Список инвентаризаций"
                    VerticalAlignment="Center"
                    HorizontalAlignment="Center"
                    FontSize="18"
@@ -60,10 +60,10 @@
                 </Grid>
             </StackPanel>
 
-            <DataGrid x:Name="ProgrammersGrid"
+            <DataGrid x:Name="InventoryGrid"
                       Grid.Row="2"
                       AutoGenerateColumns="False"
-                      IsReadOnly="False"
+                      CanUserAddRows="False"
                       CanUserSortColumns="True"
                       VerticalAlignment="Stretch"
                       Background="White"
@@ -74,11 +74,7 @@
                       BorderBrush="#DDD"
                       BorderThickness="0.5"
                       SelectionMode="Single"
-                      CanUserAddRows="False"
-                      MinHeight="300"
-                      Margin="10"
-                      CellEditEnding="ProgrammersGrid_CellEditEnding"
-                      ItemsSource="{Binding ProgrammersItems}">
+                      ItemsSource="{Binding InventoryItems}">
 
                 <DataGrid.ContextMenu>
                     <ContextMenu>
@@ -116,7 +112,9 @@
 
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="1*" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="Имя программиста" Binding="{Binding Name, Mode=TwoWay}" Width="3*"/>
+                    <DataGridTextColumn Header="Наименование" Binding="{Binding InventName}" Width="2*"/>
+                    <DataGridTextColumn Header="Дата начала" Binding="{Binding DateStart, StringFormat=dd.MM.yyyy}" Width="2*"/>
+                    <DataGridTextColumn Header="Дата окончания" Binding="{Binding DateEnd, StringFormat=dd.MM.yyyy}" Width="2*"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>
